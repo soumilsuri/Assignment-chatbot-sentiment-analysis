@@ -1,6 +1,11 @@
 # Chatbot with Sentiment Analysis
 
+
 A sophisticated chatbot application that conducts conversations with users and performs sentiment analysis on the entire conversation. Built with Google Gemini API for intelligent responses and Hugging Face transformers for sentiment analysis.
+
+## 🚀 Live Demo
+
+Try the application live here: [**Chatbot with Sentiment Analysis**](https://chatbot-sentiment-analysis.streamlit.app/)
 
 ## How to Run
 
