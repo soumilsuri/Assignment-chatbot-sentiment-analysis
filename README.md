@@ -58,6 +58,58 @@ A sophisticated chatbot application that conducts conversations with users and p
    
    The application will open in your default web browser at `http://localhost:8501`
 
+### Running with Docker
+
+You can also run the application using Docker.
+
+1. **Build and Run with Docker Compose** (Recommended)
+   
+   To run both the Streamlit app and Flask API:
+   ```bash
+   docker-compose up --build
+   ```
+   - Streamlit App: `http://localhost:8501`
+   - Flask API: `http://localhost:5000`
+
+2. **Run specific service**
+   
+   Streamlit only:
+   ```bash
+   docker-compose up streamlit-app
+   ```
+   
+   Flask API only:
+   ```bash
+   docker-compose up flask-api
+   ```
+
+3. **Build manually**
+   ```bash
+   docker build -t chatbot-sentiment .
+   docker run -p 8501:8501 --env-file .env chatbot-sentiment
+   ```
+
+### Running the Flask API
+
+Alternatively, you can run the Flask API server to expose the functionality via REST endpoints:
+
+```bash
+python api.py
+```
+
+The server will start at `http://localhost:5000`.
+
+**Available Endpoints:**
+
+- `POST /api/chat`: Interact with the chatbot
+  - Body: `{"message": "Hello", "history": []}`
+- `POST /api/sentiment`: Analyze sentiment
+  - Body: `{"text": "I am happy"}`
+- `POST /api/emotion`: Analyze emotion
+  - Body: `{"text": "I am happy"}`
+- `POST /api/summary`: Generate summary
+  - Body: `{"history": [{"role": "user", "content": "..."}]}`
+
 ## Chosen Technologies
 
 ### Core Technologies
@@ -164,6 +216,14 @@ To test the application, you can use the built-in **Test Zone** or perform manua
 4. Try mixed conversations to see how overall sentiment is calculated.
 5. Use the sentiment analysis button to verify results.
 
+### Unit Tests
+
+To run the automated unit tests for the API:
+
+```bash
+python test_api.py
+```
+
 ## Highlights of Innovations
 
 - **Test Zone**: A built-in simulation tool to instantly verify sentiment analysis logic without manual typing.
@@ -187,6 +247,10 @@ Assignment-chatbot-sentiment-analysis/
 │   ├── test_scenarios.py    # Predefined test scenarios
 │   └── utils.py             # Utility functions
 ├── app.py                   # Streamlit main application
+├── api.py                   # Flask API application
+├── test_api.py              # API unit tests
+├── Dockerfile               # Docker configuration
+├── docker-compose.yml       # Docker Compose configuration
 ├── requirements.txt         # Python dependencies
 ├── .env.example             # Environment variables template
 └── README.md                # This file
